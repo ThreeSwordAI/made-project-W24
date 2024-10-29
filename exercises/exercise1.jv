@@ -1,10 +1,7 @@
 pipeline NeussPipeline {
   AirportsExtractor
-    -> AirportsTextFileInterpreter;
-
-  AirportsTextFileInterpreter
+    -> AirportsTextFileInterpreter
     -> AirportsCSVInterpreter
-    //-> NameHeaderWriter
     -> AirportsTableInterpreter
     -> AirportsLoader;
 
@@ -24,7 +21,7 @@ pipeline NeussPipeline {
   // 10. Next, we interpret the text file as sheet.
   // A sheet only contains text cells and is useful for manipulating the shape of data before assigning more strict value types to cells.
   block AirportsCSVInterpreter oftype CSVInterpreter {
-    //enclosing: '"';
+    delimiter: ";";
   }
 
   // 11. We can write into cells of a sheet using the CellWriter block type.
