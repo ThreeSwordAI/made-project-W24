@@ -1,0 +1,80 @@
+pipeline NeussPipeline {
+  AirportsExtractor
+    -> AirportsTextFileInterpreter;
+
+  AirportsTextFileInterpreter
+    -> AirportsCSVInterpreter
+    //-> NameHeaderWriter
+    -> AirportsTableInterpreter
+    -> AirportsLoader;
+
+
+
+  block AirportsExtractor oftype HttpExtractor {
+
+    // 8. Properties are assigned to concrete values.
+    // Here, we specify the URL where the file shall be downloaded from.
+    url: "https://opendata.rhein-kreis-neuss.de/api/explore/v2.1/catalog/datasets/rhein-kreis-neuss-flughafen-weltweit/exports/csv?lang=en&timezone=Europe%2FBerlin&use_labels=true&delimiter=%3B";
+  }
+
+  // 9. The HttpExtractor requires no input and produces a binary file as output.
+  // This file has to be interpreted, e.g., as text file.
+  block AirportsTextFileInterpreter oftype TextFileInterpreter { }
+
+  // 10. Next, we interpret the text file as sheet.
+  // A sheet only contains text cells and is useful for manipulating the shape of data before assigning more strict value types to cells.
+  block AirportsCSVInterpreter oftype CSVInterpreter {
+    //enclosing: '"';
+  }
+
+  // 11. We can write into cells of a sheet using the CellWriter block type.
+  //block NameHeaderWriter oftype CellWriter {
+    // 12. We utilize a syntax similar to spreadsheet programs.
+    // Cell ranges can be described using the keywords "cell", "row", "column", or "range" that indicate which 
+    // cells are selected for the write action.
+    //at: cell A1;
+
+    // 13. For each cell we selected with the "at" property above,
+    // we can specify what value shall be written into the cell.
+    //write: [
+    //  "name"
+    //];
+ // }
+//Lfd. Nummer;Name des Flughafens;Ort;Land;IATA;ICAO;Latitude;Longitude;Altitude;Zeitzone;DST;Zeitzonen-Datenbank;geo_punkt
+//8703;Barberton Airport;Barberton;South Africa;0;FABR;-25.716869;30.97518;686;2.0;U;Africa/Johannesburg;-25.716869, 30.97518
+
+
+//Do not save the following columns: Zeitzone, DST, Zeitzonen-Datenbank, geo_punkt
+//Assign fitting built-in SQLite types (e.g., BIGINT, TEXT or FLOAT) to all other column
+
+  // 14. As a next step, we interpret the sheet as a table by adding structure.
+  // We define a value type per column that specifies the data type of the column.
+  // Rows that include values that are not valid according to the their value types are dropped automatically. 
+  block AirportsTableInterpreter oftype TableInterpreter {
+    header: true;
+    columns: [
+      "Lfd. Nummer" oftype integer,
+      "Name des Flughafens" oftype text,
+      "Ort" oftype text,
+      "Land" oftype text,
+      "IATA" oftype integer,
+      "ICAO" oftype text,
+      "Latitude" oftype decimal,
+      "Longitude" oftype decimal,
+      "Altitude" oftype decimal
+    ];
+  }
+
+  // 15. As a last step, we load the table into a sink,
+  // here into a sqlite file.
+  // The structural information of the table is used
+  // to generate the correct table.
+  block AirportsLoader oftype SQLiteLoader {
+    table: "airports";
+    file: "./airports.sqlite";
+  }
+
+  // 16. Congratulations!
+  // You can now use the sink for your data analysis, app, 
+  // or whatever you want to do with the cleaned data.  
+}
