@@ -54,11 +54,11 @@ pipeline NeussPipeline {
       "Name des Flughafens" oftype text,
       "Ort" oftype text,
       "Land" oftype text,
-      "IATA" oftype integer,
+      "IATA" oftype text,
       "ICAO" oftype text,
       "Latitude" oftype decimal,
       "Longitude" oftype decimal,
-      "Altitude" oftype decimal
+      "Altitude" oftype integer
     ];
   }
 
