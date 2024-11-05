@@ -1,0 +1,66 @@
+pipeline districtPipeline {
+    districtExtractor 
+        -> districtTextFileInterpreter
+        -> districtCSVInterpreter
+        -> districtColumnDeleter
+        -> districtTableInterpreter
+        -> districtLoader;
+
+
+    block districtExtractor oftype HttpExtractor {
+        url: "https://opendata.rhein-kreis-neuss.de/api/v2/catalog/datasets/stadt-neuss-herbstpflanzung-2023/exports/csv";
+    }
+
+    block districtTextFileInterpreter oftype TextFileInterpreter { }
+
+    // Now we will convert text type to csv type
+    block districtCSVInterpreter oftype CSVInterpreter {
+        delimiter: ";"; // here ";" means that by using ; columns are separated
+    }
+
+    //Documentation: https://jvalue.github.io/jayvee/docs/user/block-types/ColumnDeleter
+    block districtColumnDeleter oftype ColumnDeleter {
+        delete: [column E]; //This will delete the E number column
+    }
+
+
+    // VogelsangText: this type will ensure that the data of this column will start with "Vogelsang"
+    valuetype VogelsangText oftype text {
+        constraints: [ Vogelsang_Regex ];
+    }
+    constraint Vogelsang_Regex oftype RegexConstraint {
+        regex: /^Vogelsang.*/; 
+    }
+
+    // ValidIdText: this type will ensure that the data of this column will have only
+    // {geo-coordinate 1}, {geo-coordinate 2}
+    // a geo-coordinate is defined as {1-3 numbers}.{numbers}
+    valuetype ValidIdText oftype text {
+        constraints: [ IdRegex ];
+    }
+    
+
+    constraint IdRegex oftype RegexConstraint {
+        regex: /^\d{1,3}\.\d+,\s*\d{1,3}\.\d+$/;    
+    }
+
+
+    block districtTableInterpreter oftype TableInterpreter {
+        header: true;
+        columns: [
+            "lfd_nr" oftype integer,
+            "stadtteil" oftype VogelsangText,
+            "standort" oftype text,
+            "baumart_botanisch" oftype text,
+            "id" oftype ValidIdText,
+            "baumfamilie" oftype text
+        ];
+    }
+
+
+    block districtLoader oftype SQLiteLoader {
+        table: "trees";
+        file: "./trees.sqlite";
+    }
+
+}
