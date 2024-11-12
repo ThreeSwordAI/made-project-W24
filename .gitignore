@@ -2,3 +2,4 @@
 /data/*
 !/data/.gitkeep
 madeEnv/
+/data/traffic_data_cleaned.sqlite
