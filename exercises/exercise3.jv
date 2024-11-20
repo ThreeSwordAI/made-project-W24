@@ -53,15 +53,13 @@ pipeline worldBankData {
     }
 
     constraint PositiveDecimal_Value oftype RangeConstraint {
-        lowerBound: 0.0;
+        lowerBound: 0;
         lowerBoundInclusive: false;
     }
 
     constraint BoundaryDecimal_Value oftype RangeConstraint {
-        lowerBound: 0;
-        lowerBoundInclusive: true;
-        upperBound: 1;
-        upperBoundInclusive: true;
+        lowerBound: 0.0;
+        upperBound: 1.0;
     }
 
 
