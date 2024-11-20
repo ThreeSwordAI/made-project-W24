@@ -43,12 +43,12 @@ pipeline worldBankData {
 
 
 
-    valuetype PositiveDecimal oftype text {
+    valuetype PositiveDecimal oftype decimal {
         constraints: [ PositiveDecimal_Value ];
     }
 
 
-    valuetype BoundaryDecimal oftype text {
+    valuetype BoundaryDecimal oftype decimal {
         constraints: [ BoundaryDecimal_Value ];
     }
 
