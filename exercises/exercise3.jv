@@ -1,0 +1,102 @@
+pipeline worldBankData {
+    worldBankDataExtractor 
+        -> worldBankDataXLSXInterpreter
+        -> worldBankDataXLSXSheetpicker
+        -> worldBankDataHeaderWriter
+        -> worldBankDataSelector
+        -> worldBankDataTableInterpreter1
+        -> bondIssuanceWoldBankDataLoader;
+
+    worldBankDataSelector
+        -> worldBankDataTableInterpreter2
+        -> gdpPerCapitaWoldBankDataLoader;
+
+
+
+    block worldBankDataExtractor oftype HttpExtractor {
+        url: "https://thedocs.worldbank.org/en/doc/7d852628d96b9411d43e5d36d5dff941-0050062022/original/Graphs-Chapter-5-02082022.xlsx";
+    }
+
+    block worldBankDataXLSXInterpreter oftype XLSXInterpreter { }
+
+    block worldBankDataXLSXSheetpicker oftype SheetPicker {
+        sheetName: 'Figure S5.1.2';
+    }
+
+
+
+    block worldBankDataSelector oftype CellRangeSelector {
+        select: range P2:S45;
+    }
+
+
+
+    block worldBankDataHeaderWriter oftype CellWriter {
+        at: range P2:S2;
+        write: [
+            "Country Code",
+            "Economy",
+            "GDP per Capita",
+            "Bond Issuance Share",
+        ];
+    }
+
+
+
+    valuetype PositiveDecimal oftype text {
+        constraints: [ PositiveDecimal_Value ];
+    }
+
+
+    valuetype BoundaryDecimal oftype text {
+        constraints: [ BoundaryDecimal_Value ];
+    }
+
+    constraint PositiveDecimal_Value oftype RangeConstraint {
+        lowerBound: 0.0;
+        lowerBoundInclusive: false;
+    }
+
+    constraint BoundaryDecimal_Value oftype RangeConstraint {
+        lowerBound: 0;
+        lowerBoundInclusive: true;
+        upperBound: 1;
+        upperBoundInclusive: true;
+    }
+
+
+    block worldBankDataTableInterpreter1 oftype TableInterpreter {
+        header: true;
+        columns: [
+            "Country Code" oftype CountryCodeAlpha3,
+            "Bond Issuance Share" oftype BoundaryDecimal
+        ];
+    }
+
+    block worldBankDataTableInterpreter2 oftype TableInterpreter {
+        header: true;
+        columns: [
+            "Country Code" oftype CountryCodeAlpha3,
+            "GDP per Capita" oftype PositiveDecimal
+        ];
+    }
+
+    block bondIssuanceWoldBankDataLoader oftype SQLiteLoader {
+        table: "bondIssuance";
+        file: "./country-stats.sqlite";
+    }
+
+    block gdpPerCapitaWoldBankDataLoader oftype SQLiteLoader {
+        table: "gdpPerCapita";
+        file: "./country-stats.sqlite";
+    }
+}
+
+
+
+
+
+
+
+
+    
