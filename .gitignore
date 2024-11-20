@@ -3,3 +3,6 @@
 !/data/.gitkeep
 madeEnv/
 /data/traffic_data_cleaned.sqlite
+exercises/country-stats.sqlite
+exercises/trees.sqlite
+exercises/traffic_data_cleaned.sqlite
