@@ -2,7 +2,7 @@
 
 ## Title
 <!-- Title of my Project-->
-Investigating Potential Racial Bias in Traffic Policing of US: An Evidence-Based Analysis
+Exploring Racial Bias in Traffic Policing: An Analysis of Six Eastern States of USA
 
 ## Main Question
 
