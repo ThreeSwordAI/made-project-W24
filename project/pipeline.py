@@ -6,7 +6,7 @@ from sqlalchemy import create_engine
 from io import BytesIO
 
 
-data_dir = "./data"
+data_dir = "../data"
 os.makedirs(data_dir, exist_ok=True)
 
 # the datasets I need for the project

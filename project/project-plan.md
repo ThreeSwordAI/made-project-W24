@@ -41,6 +41,8 @@ These datasets contain traffic records from various U.S. locations, including Ne
 
 1. Concatenate Datasets from Multiple Locations [#1][i1]
 2. Duplicate Column Handling [#2][i2]
+3. Use WSL in Windows [#3][i3]
 
 [i1]: https://github.com/ThreeSwordAI/made-project-W24/issues/1
 [i2]: https://github.com/ThreeSwordAI/made-project-W24/issues/2
+[i3]: https://github.com/ThreeSwordAI/made-project-W24/issues/3
