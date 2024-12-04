@@ -26,14 +26,10 @@ This project will explore potential racial patterns in traffic police behavior b
     - Connecticut: https://stacks.stanford.edu/file/druid:yg821jf8611/yg821jf8611_ct_hartford_2020_04_01.csv.zip
     - Vermont: https://stacks.stanford.edu/file/druid:yg821jf8611/yg821jf8611_vt_statewide_2020_04_01.csv.zip
     - Massachusetts: https://stacks.stanford.edu/file/druid:yg821jf8611/yg821jf8611_ma_statewide_2020_04_01.csv.zip
-    - New Jersey: https://stacks.stanford.edu/file/druid:yg821jf8611/yg821jf8611_nj_camden_2020_04_01.csv.zip
-    - Maryland: https://stacks.stanford.edu/file/druid:yg821jf8611/yg821jf8611_md_statewide_2020_04_01.csv.zip
-    - Virginia: https://stacks.stanford.edu/file/druid:yg821jf8611/yg821jf8611_va_statewide_2020_04_01.csv.zip
-    - San Francisco: https://stacks.stanford.edu/file/druid:yg821jf8611/yg821jf8611_ca_san_francisco_2020_04_01.csv.zip
 
 * Data Type: CSV (Inside a Zip folder)
 
-These datasets contain traffic records from various U.S. locations, including New Hampshire, Rhode Island, Connecticut, Vermont, Massachusetts, New Jersey, Maryland, Pennsylvania, Virginia and San Francisco.
+These datasets contain traffic records from various U.S. locations, including New Hampshire, Rhode Island, Connecticut, Vermont and Massachusetts.
 
 ## Work Packages
 
