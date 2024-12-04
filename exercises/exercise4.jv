@@ -42,13 +42,24 @@ pipeline temperaturePipeline {
         write: ["battery_temperature"];
     }
 
-    constraint condition oftype RangeConstraint {
+    constraint condition1 oftype RangeConstraint {
         lowerBound: 0;
         lowerBoundInclusive: false;
     }
 
     valuetype greaterThanZeroInt oftype integer {
-        constraints: [condition];
+        constraints: [condition1];
+    }
+
+    constraint condition2 oftype RangeConstraint {
+        lowerBound: 1;
+        lowerBoundInclusive: true;
+        upperBound: 12;
+        upperBoundInclusive: true;
+    }
+
+    valuetype month1to12 oftype integer {
+        constraints: [condition2];
     }
 
     block temperatureTableInterpreter oftype TableInterpreter {
@@ -57,7 +68,7 @@ pipeline temperaturePipeline {
             "id" oftype greaterThanZeroInt,
             "producer" oftype text,
             "model" oftype text,
-            "month" oftype integer,
+            "month" oftype month1to12,
             "temperature" oftype decimal,
             "battery_temperature" oftype decimal
         ];
