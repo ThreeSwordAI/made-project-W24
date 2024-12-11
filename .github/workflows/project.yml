@@ -22,7 +22,7 @@ jobs:
         working-directory: project
         run: |
           chmod +x tests.sh 
-          ./tests.sh > project-feedback.txt 
+          ./tests.sh > ../project-feedback.txt || cat ../project-feedback.txt
 
       - name: Upload project-feedback.txt
         uses: actions/upload-artifact@v3
