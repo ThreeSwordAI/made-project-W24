@@ -1,0 +1,32 @@
+name: CI for Project
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - project/**
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python (if needed)
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Run tests and generate feedback
+        run: |
+          chmod +x tests.sh 
+          ./tests.sh > project-feedback.txt 
+
+      - name: Upload project-feedback.txt
+        uses: actions/upload-artifact@v3
+        with:
+          name: project-feedback
+          path: project-feedback.txt
