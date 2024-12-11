@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - project/**
 
 jobs:
   test:
@@ -21,6 +19,7 @@ jobs:
           python-version: '3.x'
 
       - name: Run tests and generate feedback
+        working-directory: project
         run: |
           chmod +x project/tests.sh 
           ./project/tests.sh > project-feedback.txt 
