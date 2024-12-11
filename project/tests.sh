@@ -9,7 +9,7 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-echo "Running pipeline.py file. It will take some time since every datasets is big."
+echo "Running pipeline.py file. Datesets are reduced because of the time it takes to run the pipeline."
 python3 pipeline.py
 
 if [ $? -ne 0 ]; then
