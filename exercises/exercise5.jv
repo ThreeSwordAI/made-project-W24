@@ -30,7 +30,7 @@ pipeline GTFSPipeline {
     }
 
     constraint nameRegex oftype RegexConstraint {
-        regex: /^[A-Za-zÄÖÜäöüß\s.-]+$/;
+        regex: /^(?=.*[A-Za-zäöüÄÖÜß])[\wäöüÄÖÜß\s\-,.()#&]*$/;
     }
 
     constraint coordinates oftype RangeConstraint {
