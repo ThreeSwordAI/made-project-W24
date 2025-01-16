@@ -6,12 +6,18 @@ from sqlalchemy import create_engine
 from io import BytesIO
 
 
-data_dir = "../data"
+data_dir = "./data"
 os.makedirs(data_dir, exist_ok=True)
 
 # the datasets I need for the project
 datasets = {
-    "New Hampshire": "https://stacks.stanford.edu/file/druid:yg821jf8611/yg821jf8611_nh_statewide_2020_04_01.csv.zip"
+    "New Hampshire": "https://stacks.stanford.edu/file/druid:yg821jf8611/yg821jf8611_nh_statewide_2020_04_01.csv.zip",
+    "Rhode Island": "https://stacks.stanford.edu/file/druid:yg821jf8611/yg821jf8611_ri_statewide_2020_04_01.csv.zip",
+    "Connecticut": "https://stacks.stanford.edu/file/druid:yg821jf8611/yg821jf8611_ct_hartford_2020_04_01.csv.zip",
+    "Vermont": "https://stacks.stanford.edu/file/druid:yg821jf8611/yg821jf8611_vt_statewide_2020_04_01.csv.zip",
+    "Massachusetts": "https://stacks.stanford.edu/file/druid:yg821jf8611/yg821jf8611_ma_statewide_2020_04_01.csv.zip",
+    #"Maryland": "https://stacks.stanford.edu/file/druid:yg821jf8611/yg821jf8611_md_statewide_2020_04_01.csv.zip",
+    "Virginia": "https://stacks.stanford.edu/file/druid:yg821jf8611/yg821jf8611_va_statewide_2020_04_01.csv.zip"
 }
 
 
