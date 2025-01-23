@@ -1,37 +1,27 @@
-# Methods of Advanced Data Engineering Template Project
+## Title
+<!-- Title of my Project-->
+Exploring Racial Bias in Traffic Policing: An Analysis of Six Eastern States of USA
 
-This template project provides some structure for your open data project in the MADE module at FAU.
-This repository contains (a) a data science project that is developed by the student over the course of the semester, and (b) the exercises that are submitted over the course of the semester.
+## Research Question
 
-To get started, please follow these steps:
-1. Create your own fork of this repository. Feel free to rename the repository right after creation, before you let the teaching instructors know your repository URL. **Do not rename the repository during the semester**.
+<!-- This is the question I want find answer based on the Data I have -->
+1. Are there observable patterns in traffic stop occurrences and their outcomes based on the drivers' race?
 
-## Project Work
-Your data engineering project will run alongside lectures during the semester. We will ask you to regularly submit project work as milestones, so you can reasonably pace your work. All project work submissions **must** be placed in the `project` folder.
+## Abstract
 
-### Exporting a Jupyter Notebook
-Jupyter Notebooks can be exported using `nbconvert` (`pip install nbconvert`). For example, to export the example notebook to HTML: `jupyter nbconvert --to html examples/final-report-example.ipynb --embed-images --output final-report.html`
+This research investigates the potential racial bias in traffic policing across six eastern states in the United States, utilizing data from the Stanford Open Policing Project. The analysis is based on 9,494,312 traffic stops. The search focuses on racial patterns in searches conducted, arrests made, warnings issued and contraband discoveries. Key findings show that the arrest rates are higher for Black drivers in most of the contraband categories. Although the differences in arrest rates are subtle, but the observed patterns suggest racial disparities in traffic policing, warranting further investigation.
 
 
-## Exercises
-During the semester you will need to complete exercises using [Jayvee](https://github.com/jvalue/jayvee). You **must** place your submission in the `exercises` folder in your repository and name them according to their number from one to five: `exercise<number from 1-5>.jv`.
+## Datasources
 
-In regular intervals, exercises will be given as homework to complete during the semester. Details and deadlines will be discussed in the lecture, also see the [course schedule](https://made.uni1.de/).
+<!-- Describe each datasources you plan to use in a section. Use the prefic "DatasourceX" where X is the id of the datasource. -->
 
-### Exercise Feedback
-We provide automated exercise feedback using a GitHub action (that is defined in `.github/workflows/exercise-feedback.yml`). 
-
-To view your exercise feedback, navigate to Actions → Exercise Feedback in your repository.
-
-The exercise feedback is executed whenever you make a change in files in the `exercise` folder and push your local changes to the repository on GitHub. To see the feedback, open the latest GitHub Action run, open the `exercise-feedback` job and `Exercise Feedback` step. You should see command line output that contains output like this:
-
-```sh
-Found exercises/exercise1.jv, executing model...
-Found output file airports.sqlite, grading...
-Grading Exercise 1
-	Overall points 17 of 17
-	---
-	By category:
-		Shape: 4 of 4
-		Types: 13 of 13
-```
+### Datasource: 
+* Metadata URL: https://openpolicing.stanford.edu/data/
+* Data URL:
+    - New Hampshire: https://stacks.stanford.edu/file/druid:yg821jf8611/yg821jf8611_nh_statewide_2020_04_01.csv.zip
+    - Rhode Island: https://stacks.stanford.edu/file/druid:yg821jf8611/yg821jf8611_ri_statewide_2020_04_01.csv.zip
+    - Connecticut: https://stacks.stanford.edu/file/druid:yg821jf8611/yg821jf8611_ct_hartford_2020_04_01.csv.zip
+    - Vermont: https://stacks.stanford.edu/file/druid:yg821jf8611/yg821jf8611_vt_statewide_2020_04_01.csv.zip
+    - Massachusetts: https://stacks.stanford.edu/file/druid:yg821jf8611/yg821jf8611_ma_statewide_2020_04_01.csv.zip
+    - Virginia: https://stacks.stanford.edu/file/druid:yg821jf8611/yg821jf8611_va_statewide_2020_04_01.csv.zip
