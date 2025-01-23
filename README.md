@@ -25,3 +25,7 @@ This research investigates the potential racial bias in traffic policing across 
     - Vermont: https://stacks.stanford.edu/file/druid:yg821jf8611/yg821jf8611_vt_statewide_2020_04_01.csv.zip
     - Massachusetts: https://stacks.stanford.edu/file/druid:yg821jf8611/yg821jf8611_ma_statewide_2020_04_01.csv.zip
     - Virginia: https://stacks.stanford.edu/file/druid:yg821jf8611/yg821jf8611_va_statewide_2020_04_01.csv.zip
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
